@@ -55,19 +55,21 @@ export default function Landing() {
 
       <section className="mx-auto max-w-6xl px-5 pb-28">
         <h2 className="mb-10 text-center font-display text-4xl sm:text-5xl">Planes <em className="text-gradient">simples</em></h2>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="mx-auto grid max-w-4xl gap-4 md:grid-cols-2">
           {PLANS.map((p) => (
             <div key={p.name} className={cx('card relative p-7', p.highlight && 'border-brand/50 shadow-[0_0_80px_-30px] shadow-brand')}>
               {p.highlight && <span className="chip absolute -top-3 left-7 bg-gradient-to-r from-brand to-accent text-ink-950">Más popular</span>}
-              <p className="font-semibold text-ink-300">{p.name}</p>
-              <p className="mt-2 font-display text-4xl">{money(p.price)}<span className="text-base text-ink-400">{p.period}</span></p>
+              <p className="font-display text-2xl">{p.name}</p>
+              <p className="text-sm text-ink-400">{p.tagline}</p>
+              <p className="mt-4 font-display text-4xl">{money(p.price)}<span className="text-base text-ink-400"> una vez</span></p>
+              <p className="font-display text-xl">+ {money(p.monthly)}<span className="text-sm text-ink-400"> al mes</span></p>
               <ul className="mt-6 space-y-2.5 text-sm">
                 {p.features.map((f) => <li key={f} className="flex gap-2"><Check className="h-4 w-4 shrink-0 text-brand" />{f}</li>)}
               </ul>
             </div>
           ))}
         </div>
-        <p className="mt-6 text-center text-sm text-ink-400">Primer mes gratis para probar ✨</p>
+        <p className="mt-6 text-center text-sm text-ink-400">Primer mes gratis para probar ✨ · ¿Empiezas con Básico y luego quieres tu dominio? Pagas la diferencia.</p>
       </section>
       <footer className="border-t border-white/5 py-8 text-center text-xs text-ink-400">© {new Date().getFullYear()} {BRAND}</footer>
     </div>

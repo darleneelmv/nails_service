@@ -7,7 +7,7 @@ import { useAuth } from '../../lib/auth.jsx';
 import { money, cx, ymd, applyTheme } from '../../lib/utils';
 import { Modal, Field, Toggle, useToast, PageLoader, Stars } from '../../components/ui.jsx';
 
-const PLANS = { beta: { label: 'Beta gratis', price: 0 }, esencial: { label: 'Esencial', price: 299 }, estudio: { label: 'Estudio', price: 449 }, unico: { label: 'Pago único + mant.', price: 149 } };
+const PLANS = { beta: { label: 'Prueba gratis', price: 0 }, basico: { label: 'Básico · $1,800 + $99/mes', price: 99 }, pro: { label: 'Pro · $2,500 + $149/mes', price: 149 } };
 
 export default function Admin() {
   const { user, logout, enterStudio } = useAuth();
