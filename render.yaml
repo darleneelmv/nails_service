@@ -1,24 +1,22 @@
+# Plan gratis: sin disco. Los datos se reinician cuando Render duerme o reinicia el servicio
+# (ideal para demo). Para uso real cambia plan a "starter" y descomenta el disco.
 services:
   - type: web
-    name: brillo
+    name: nails-service
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm run build
     startCommand: npm start
+    healthCheckPath: /api/public/starlight-studio
     envVars:
       - key: NODE_VERSION
         value: 22.13.0
       - key: NODE_ENV
         value: production
-      - key: DATA_DIR
-        value: /var/data
-      - key: JWT_SECRET
-        generateValue: true
       - key: ADMIN_EMAIL
-        sync: false
-      - key: ADMIN_PASSWORD
-        sync: false
-    disk:
-      name: brillo-data
-      mountPath: /var/data
-      sizeGB: 1
+        value: admin@brillo.app
+    # disk:
+    #   name: brillo-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    # (y agrega DATA_DIR=/var/data en envVars)

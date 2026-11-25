@@ -1,7 +1,19 @@
 import jwt from 'jsonwebtoken';
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
 import { one } from './db.js';
 
-const SECRET = process.env.JWT_SECRET || 'cambia-esto-en-produccion';
+// Si no defines JWT_SECRET, se genera uno al azar y se guarda junto a la base de datos.
+function loadSecret() {
+  if (process.env.JWT_SECRET) return process.env.JWT_SECRET;
+  const file = path.join(process.env.DATA_DIR || path.resolve('data'), '.jwt-secret');
+  try { return fs.readFileSync(file, 'utf8').trim(); } catch { /* first run */ }
+  const s = crypto.randomBytes(32).toString('hex');
+  fs.writeFileSync(file, s, { mode: 0o600 });
+  return s;
+}
+const SECRET = loadSecret();
 
 export const sign = (user) =>
   jwt.sign({ uid: user.id }, SECRET, { expiresIn: '30d' });
