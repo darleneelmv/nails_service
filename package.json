@@ -1,0 +1,14 @@
+{
+  "name": "brillo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Agenda + página web para estudios de belleza (multi-estudio, por roles)",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "build": "npm run install:all && npm --prefix client run build",
+    "start": "npm --prefix server start",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev"
+  }
+}
