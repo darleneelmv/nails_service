@@ -456,7 +456,7 @@ app.use('/api/super', sup);
 app.use('/api', api);
 
 /* ---------------- Frontend ---------------- */
-const dist = path.resolve(process.env.CLIENT_DIST || '../client/dist');
+const dist = process.env.CLIENT_DIST || path.resolve(path.dirname(new URL(import.meta.url).pathname), '../../client/dist');
 if (fs.existsSync(dist)) {
   app.use(express.static(dist, { index: false, maxAge: '1h' }));
   app.get(/^\/(?!api|uploads).*/, (_req, res) => res.sendFile(path.join(dist, 'index.html')));
