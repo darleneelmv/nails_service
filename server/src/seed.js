@@ -37,7 +37,7 @@ export function seedIfEmpty() {
   // En producción nunca se usa una contraseña por defecto: si no pones ADMIN_PASSWORD se genera una al azar y se muestra en los logs.
   const adminPass = process.env.ADMIN_PASSWORD
     || (process.env.NODE_ENV === 'production' ? crypto.randomBytes(9).toString('base64url') : 'brillo-admin-2026');
-  insert('users', { name: 'Bernie', email: adminEmail, password_hash: bcrypt.hashSync(adminPass, 10), role: 'superadmin' });
+  insert('users', { name: process.env.ADMIN_NAME || 'Darlene', email: adminEmail, password_hash: bcrypt.hashSync(adminPass, 10), role: 'superadmin' });
   console.log(`👑 Superadmin: ${adminEmail} / ${adminPass}  (cámbialo con ADMIN_EMAIL / ADMIN_PASSWORD)`);
 
   if (process.env.SEED_DEMO === '0') return;

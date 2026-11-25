@@ -394,7 +394,7 @@ api.delete('/team/:id', requireRole('owner'), wrap((req, res) => {
 }));
 
 
-/* ---------------- Super admin (Bernie) ---------------- */
+/* ---------------- Super admin (Darlene) ---------------- */
 const sup = express.Router();
 sup.use(requireAuth, requireSuper);
 sup.get('/studios', wrap((_req, res) => res.json(all(`SELECT s.*,
