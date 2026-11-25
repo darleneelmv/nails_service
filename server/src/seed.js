@@ -34,7 +34,9 @@ export function seedIfEmpty() {
   if (one('SELECT id FROM users LIMIT 1')) return;
 
   const adminEmail = (process.env.ADMIN_EMAIL || 'admin@brillo.app').toLowerCase();
-  const adminPass = process.env.ADMIN_PASSWORD || 'brillo-admin-2026';
+  // En producción nunca se usa una contraseña por defecto: si no pones ADMIN_PASSWORD se genera una al azar y se muestra en los logs.
+  const adminPass = process.env.ADMIN_PASSWORD
+    || (process.env.NODE_ENV === 'production' ? crypto.randomBytes(9).toString('base64url') : 'brillo-admin-2026');
   insert('users', { name: 'Bernie', email: adminEmail, password_hash: bcrypt.hashSync(adminPass, 10), role: 'superadmin' });
   console.log(`👑 Superadmin: ${adminEmail} / ${adminPass}  (cámbialo con ADMIN_EMAIL / ADMIN_PASSWORD)`);
 

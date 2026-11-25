@@ -44,7 +44,7 @@ npm start              # http://localhost:4000
 Para desarrollo con recarga: `npm run dev:server` y en otra terminal `npm run dev:client` (http://localhost:5173).
 
 La primera vez se crea:
-- **Administrador:** `ADMIN_EMAIL` / `ADMIN_PASSWORD` (si no los pones: `admin@brillo.app` / `brillo-admin-2026`. **Cámbialos.**)
+- **Administrador:** el correo y la contraseña que pongas en `ADMIN_EMAIL` / `ADMIN_PASSWORD`. En tu compu, si no los pones, se usa `admin@brillo.app` / `brillo-admin-2026`. En producción (`NODE_ENV=production`) nunca hay contraseña por defecto: si no la pones, se genera una al azar y aparece en los logs.
 - **Demo:** `/starlight-studio`, con dueña `demo@starlight.studio` / `demo1234`. Desactívalo con `SEED_DEMO=0`.
 
 Variables en `.env.example`.
